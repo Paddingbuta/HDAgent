@@ -7,16 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
-import android.widget.PopupMenu;
-import android.view.MenuItem;
-import androidx.appcompat.app.AlertDialog;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.buta.hdagent.databinding.FragmentHomeBinding;
@@ -48,6 +45,7 @@ public class HomeFragment extends Fragment {
         loadFoldersFromAppDirectory();
 
         // 设置 RecyclerView 适配器
+
         fileAdapter = new FolderAdapter(folderNames);
         binding.recyclerView.setAdapter(fileAdapter);
 
@@ -67,9 +65,6 @@ public class HomeFragment extends Fragment {
                 Arrays.sort(folderList);
                 folderNames.addAll(Arrays.asList(folderList));
             }
-        } else {
-            // Show an error if the directory does not exist
-            Toast.makeText(getContext(), "No profiles directory found", Toast.LENGTH_LONG).show();
         }
     }
 

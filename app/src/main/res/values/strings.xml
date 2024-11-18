@@ -6,7 +6,35 @@
     <string name="nav_header_subtitle">Account Management Tool \nfor Game Hay Day</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_about">About</string>
-
     <string name="menu_home">Account List</string>
     <string name="menu_gallery">SCID List</string>
+    <string name="Name">Name</string>
+    <string name="Passtoken">Passtoken</string>
+    <string name="Language">Language</string>
+    <string name="SCToken">SCToken</string>
+    <string name="Open">Open</string>
+    <string name="Edit">Edit</string>
+    <string name="Delete">Delete</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="NewArchive">New Archive</string>
+    <string name="BatchOperations">Batch Operations</string>
+    <string name="Import">Import</string>
+    <string name="Export">Export</string>
+    <string name="ImportData">Import Data</string>
+    <string name="InputHint">Enter data in format: XX-XXXXXX Token</string>
+    <string name="ExportData">Export Data</string>
+    <string name="EditArchive">Edit Archive</string>
+    <string name="ConfirmDelete">Confirm Delete</string>
+    <string name="ConfirmDeleteText">Are you sure you want to delete the folder</string>
+    <string name="Filenotfound">File not found</string>
+    <string name="AboutMsg">
+        <![CDATA[
+        <b>HD Agent</b><br/><br/>
+        <b>Version:</b> 1.0.0<br/>
+        <b>Author:</b> ぶた🐷<br/>
+        <b>Date:</b> 2024/11/19
+    ]]>
+    </string>
+
 </resources>

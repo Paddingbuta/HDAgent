@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">HD Agent</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">مساعد HD</string>
+    <string name="nav_header_subtitle">أداة إدارة الحساب للعبة "Hay Day"</string>
+    <string name="action_about">حول</string>
+    <string name="menu_home">قائمة الحسابات</string>
+    <string name="menu_gallery">قائمة SCID</string>
+    <string name="Name">الاسم</string>
+    <string name="Passtoken">رمز المرور</string>
+    <string name="Language">اللغة</string>
+    <string name="SCToken">رمز SC</string>
+    <string name="Open">فتح</string>
+    <string name="Edit">تعديل</string>
+    <string name="Delete">حذف</string>
+    <string name="OK">موافق</string>
+    <string name="Cancel">إلغاء</string>
+    <string name="NewArchive">أرشيف جديد</string>
+    <string name="BatchOperations">عمليات مجمعة</string>
+    <string name="Import">استيراد</string>
+    <string name="Export">تصدير</string>
+    <string name="ImportData">استيراد البيانات</string>
+    <string name="InputHint">الصيغة: XX-XXXXXX الرجاء إدخال الرمز</string>
+    <string name="ExportData">تصدير البيانات</string>
+    <string name="EditArchive">تعديل الأرشيف</string>
+    <string name="ConfirmDelete">تأكيد الحذف</string>
+    <string name="ConfirmDeleteText">هل أنت متأكد من أنك تريد حذف المجلد</string>
+    <string name="Filenotfound">الملف غير موجود</string>
+    <string name="AboutMsg">
+    <![CDATA[
+    <b>مساعد HD</b><br/><br/>
+    <b>الإصدار:</b> 1.0.0<br/>
+    <b>المطور:</b> ぶた🐷<br/>
+    <b>التاريخ:</b> 2024/11/19
+    ]]>
+</string>
+
+</resources>

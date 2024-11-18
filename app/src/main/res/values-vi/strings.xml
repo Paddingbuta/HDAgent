@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">HD Agent</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">HD Trợ Lý</string>
+    <string name="nav_header_subtitle">Công cụ quản lý tài khoản cho trò chơi "Hay Day"</string>
+    <string name="action_about">Thông tin</string>
+    <string name="menu_home">Danh sách tài khoản</string>
+    <string name="menu_gallery">Danh sách SCID</string>
+    <string name="Name">Tên</string>
+    <string name="Passtoken">Khóa</string>
+    <string name="Language">Ngôn ngữ</string>
+    <string name="SCToken">Khóa SC</string>
+    <string name="Open">Mở</string>
+    <string name="Edit">Chỉnh sửa</string>
+    <string name="Delete">Xóa</string>
+    <string name="OK">Đồng ý</string>
+    <string name="Cancel">Hủy bỏ</string>
+    <string name="NewArchive">Lưu trữ mới</string>
+    <string name="BatchOperations">Thao tác hàng loạt</string>
+    <string name="Import">Nhập khẩu</string>
+    <string name="Export">Xuất khẩu</string>
+    <string name="ImportData">Nhập dữ liệu</string>
+    <string name="InputHint">Định dạng: XX-XXXXXX Vui lòng nhập khóa</string>
+    <string name="ExportData">Xuất dữ liệu</string>
+    <string name="EditArchive">Chỉnh sửa lưu trữ</string>
+    <string name="ConfirmDelete">Xác nhận xóa</string>
+    <string name="ConfirmDeleteText">Bạn có chắc chắn muốn xóa thư mục không</string>
+    <string name="Filenotfound">Không tìm thấy tệp</string>
+    <string name="AboutMsg">
+    <![CDATA[
+    <b>HD Trợ Lý</b><br/><br/>
+    <b>Phiên bản:</b> 1.0.0<br/>
+    <b>Tác giả:</b> ぶた🐷<br/>
+    <b>Ngày:</b> 2024/11/19
+    ]]>
+</string>
+
+
+</resources>

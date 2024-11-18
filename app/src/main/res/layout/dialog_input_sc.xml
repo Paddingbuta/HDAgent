@@ -53,24 +53,41 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:padding="12dp"
-        android:inputType="textNoSuggestions"/>
+        android:inputType="textNoSuggestions|textMultiLine"/>
 
-    <!-- Language Label and Input -->
+    <!-- ID Label and Input -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Language"
+        android:text="SCID"
         android:textSize="14sp"
         android:textColor="#888888"
         android:paddingTop="8dp"/>
 
     <EditText
-        android:id="@+id/input_language"
+        android:id="@+id/input_scid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="EN"
         android:minHeight="48dp"
         android:padding="12dp"
         android:inputType="textNoSuggestions"/>
+
+    <!-- Passtoken Label and Input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SCToken"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/input_sctoken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:inputType="textNoSuggestions|textMultiLine"/>
+
 
 </LinearLayout>

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">HD Agent</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">HD ผู้ช่วย</string>
+    <string name="nav_header_subtitle">เครื่องมือจัดการบัญชีสำหรับเกม "Hay Day"</string>
+    <string name="action_about">เกี่ยวกับ</string>
+    <string name="menu_home">รายการบัญชี</string>
+    <string name="menu_gallery">รายการ SCID</string>
+    <string name="Name">ชื่อ</string>
+    <string name="Passtoken">รหัสผ่าน</string>
+    <string name="Language">ภาษา</string>
+    <string name="SCToken">รหัส SC</string>
+    <string name="Open">เปิด</string>
+    <string name="Edit">แก้ไข</string>
+    <string name="Delete">ลบ</string>
+    <string name="OK">ตกลง</string>
+    <string name="Cancel">ยกเลิก</string>
+    <string name="NewArchive">สร้างใหม่</string>
+    <string name="BatchOperations">ดำเนินการแบบกลุ่ม</string>
+    <string name="Import">นำเข้า</string>
+    <string name="Export">ส่งออก</string>
+    <string name="ImportData">นำเข้าข้อมูล</string>
+    <string name="InputHint">รูปแบบ: XX-XXXXXX กรุณาใส่รหัส</string>
+    <string name="ExportData">ส่งออกข้อมูล</string>
+    <string name="EditArchive">แก้ไขไฟล์</string>
+    <string name="ConfirmDelete">ยืนยันการลบ</string>
+    <string name="ConfirmDeleteText">คุณแน่ใจหรือไม่ว่าต้องการลบโฟลเดอร์นี้</string>
+    <string name="Filenotfound">ไม่พบไฟล์</string>
+    <string name="AboutMsg">
+    <![CDATA[
+    <b>HD ผู้ช่วย</b><br/><br/>
+    <b>เวอร์ชัน:</b> 1.0.0<br/>
+    <b>ผู้พัฒนา:</b> ぶた🐷<br/>
+    <b>วันที่:</b> 2024/11/19
+    ]]>
+</string>
+
+</resources>

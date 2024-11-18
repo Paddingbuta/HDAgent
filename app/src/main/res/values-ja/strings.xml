@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">HD Agent</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">HDアシスタント</string>
+    <string name="nav_header_subtitle">ゲーム「Hay Day」のアカウント管理ツール</string>
+    <string name="action_about">情報</string>
+    <string name="menu_home">アカウントリスト</string>
+    <string name="menu_gallery">SCIDリスト</string>
+    <string name="Name">名前</string>
+    <string name="Passtoken">キー</string>
+    <string name="Language">言語</string>
+    <string name="SCToken">SCキー</string>
+    <string name="Open">開く</string>
+    <string name="Edit">編集</string>
+    <string name="Delete">削除</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">キャンセル</string>
+    <string name="NewArchive">新しいアーカイブ</string>
+    <string name="BatchOperations">一括操作</string>
+    <string name="Import">インポート</string>
+    <string name="Export">エクスポート</string>
+    <string name="ImportData">データのインポート</string>
+    <string name="InputHint">形式：XX-XXXXXX キーを入力してください</string>
+    <string name="ExportData">データのエクスポート</string>
+    <string name="EditArchive">アーカイブの編集</string>
+    <string name="ConfirmDelete">削除確認</string>
+    <string name="ConfirmDeleteText">Are you sure you want to delete the folder</string>
+    <string name="Filenotfound">ファイルが見つかりません</string>
+    <string name="AboutMsg">
+    <![CDATA[
+    <b>HDアシスタント</b><br/><br/>
+    <b>バージョン:</b> 1.0.0<br/>
+    <b>作成者:</b> ぶた🐷<br/>
+    <b>日付:</b> 2024/11/19
+    ]]>
+</string>
+</resources>

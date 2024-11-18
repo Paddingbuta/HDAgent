@@ -1,0 +1,28 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- State for when the item is pressed or selected -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#42A5F5"/> <!-- Set the color of the shadow -->
+            <corners android:radius="4dp"/>
+            <padding
+                android:bottom="4dp"
+                android:left="4dp"
+                android:right="4dp"
+                android:top="4dp" />
+            <shadow
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:shadowColor="#80000000"
+                />
+        </shape>
+    </item>
+
+    <!-- Default background color when not pressed -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/> <!-- Default background color -->
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">HD Agent</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">HD助手</string>
+    <string name="nav_header_subtitle">卡通农场账号管理工具</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_about">关于</string>
+    <string name="menu_home">账号列表</string>
+    <string name="menu_gallery">SCID列表</string>
+    <string name="Name">名称</string>
+    <string name="Passtoken">密钥</string>
+    <string name="Language">语言</string>
+    <string name="SCToken">SC密钥</string>
+    <string name="Open">打开</string>
+    <string name="Edit">编辑</string>
+    <string name="Delete">删除</string>
+    <string name="OK">确定</string>
+    <string name="Cancel">取消</string>
+    <string name="NewArchive">新建存档</string>
+    <string name="BatchOperations">批量操作</string>
+    <string name="Import">导入</string>
+    <string name="Export">导出</string>
+    <string name="ImportData">导入数据</string>
+    <string name="InputHint">数据格式: XX-XXXXXX 密钥</string>
+    <string name="ExportData">导出数据</string>
+    <string name="EditArchive">编辑存档</string>
+    <string name="ConfirmDelete">删除确认</string>
+    <string name="ConfirmDeleteText">确定要删除存档</string>
+    <string name="Filenotfound">未找到文件</string>
+    <string name="AboutMsg">
+        <![CDATA[
+        <b>HD助手</b><br/><br/>
+        <b>版本:</b> 1.0.0<br/>
+        <b>作者:</b> ぶた🐷<br/>
+        <b>日期:</b> 2024/11/19
+    ]]>
+    </string>
+</resources>

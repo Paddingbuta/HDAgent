@@ -1,15 +1,13 @@
-package com.buta.hdagent.ui.home;
+package com.buta.hdagent.ui.gallery;
 import com.buta.hdagent.AESUtils;
 import com.buta.hdagent.XmlAttributeReader;
 import static com.buta.hdagent.MainActivity.navController;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +26,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.buta.hdagent.ArchiveUtils;
 import com.buta.hdagent.MainActivity;
 import com.buta.hdagent.R;
+
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -99,34 +95,34 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
                         System.out.println("目录不存在。");
                     }
 
-                    Map<String, String> xmlContent = XmlAttributeReader.queryXmlAttributes(folderName);
+                    Map<String, String> xmlContent = XmlAttributeReader.querySCXmlAttributes(folderName);
 
                     try {
                         String checkCommand = "[ -d \"" + directoryPath + "\" ] && echo \"exists\"";
                         if (executeSuCommand(checkCommand).contains("exists")) {
                             String filePath = directoryPath + "/storage_new.xml";
+                            String formattedString = "{\"" + xmlContent.get("SCID") + "\":{\"supercellId\":\"" + xmlContent.get("SCID") + "\",\"token\":\"" + xmlContent.get("SCToken") + "\"}}";
+                            System.out.println(formattedString);
                             String xml = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n" +
                                     "<map>\n" +
-                                    "    <string name=\"" + AESUtils.encryptECB("passToken_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("passToken_env3")).trim() + "</string>\n" +
-                                    "    <string name=\"" + AESUtils.encryptECB("higher_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("higher_env3")).trim() + "</string>\n" +
-                                    "    <string name=\"" + AESUtils.encryptECB("lower_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("lower_env3")).trim() + "</string>\n" +
-                                    "    <string name=\"" + AESUtils.encryptECB("language_code_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("language_code_env3")).trim() + "</string>\n" +
+                                    "    <string name=\"" + AESUtils.encryptECB("SCID_PROD_ACCOUNTS").trim() + "\">" + AESUtils.encryptCBC(formattedString).replaceAll("\\s+", "").trim() + "</string>\n" +
+                                    "    <string name=\"" + AESUtils.encryptECB("SCID_PROD_CURRENT_ACCOUNT_SUPERCELL_ID").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("SCID")).trim() + "</string>\n" +
+                                    "    <string name=\"" + AESUtils.encryptECB("passToken_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("Token")).trim() + "</string>\n" +
+                                    "    <string name=\"" + AESUtils.encryptECB("higher_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("high")).trim() + "</string>\n" +
+                                    "    <string name=\"" + AESUtils.encryptECB("lower_env3").trim() + "\">" + AESUtils.encryptCBC(xmlContent.get("low")).trim() + "</string>\n" +
                                     "    <string name=\"" + AESUtils.encryptECB("music_env3").trim() + "\">" + AESUtils.encryptCBC("false").trim() + "</string>\n" +
                                     "    <string name=\"" + AESUtils.encryptECB("sounds_env3").trim() + "\">" + AESUtils.encryptCBC("false").trim() + "</string>\n" +
                                     "</map>\n";
 
-// 使用 System.out.println 直接打印 XML
                             System.out.println(xml);
-
-// 构建 writeCommand，避免不必要的转义
                             String writeCommand = "echo \"" + xml.replace("\"", "\\\"") + "\" > " + filePath;
-
-// 打印 writeCommand 用于调试
-                            System.out.println(writeCommand);
-
                             if (executeSuCommand(writeCommand).isEmpty()) {
                                 System.out.println("XML 文件已成功创建并写入内容。");
+                            } else {
+                                System.out.println("创建或写入 XML 文件失败。");
                             }
+                        } else {
+                            System.out.println("目录不存在。");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -143,17 +139,20 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
                 return true;
             } else if (itemId == R.id.menu_option_edit) {
                 LayoutInflater inflater = LayoutInflater.from(view.getContext());
-                View dialogView = inflater.inflate(R.layout.dialog_input, null);
+                View dialogView = inflater.inflate(R.layout.dialog_input_sc, null);
 
                 EditText inputArchiveName = dialogView.findViewById(R.id.input_archive_name);
                 inputArchiveName.setText(folderName);
-                Map<String, String> result = XmlAttributeReader.queryXmlAttributes(folderName);
+                Map<String, String> result = XmlAttributeReader.querySCXmlAttributes(folderName);
+                System.out.println(result);
                 EditText inputId = dialogView.findViewById(R.id.input_id);
-                inputId.setText(result.get("higher_env3") + "-" + result.get("lower_env3"));
+                inputId.setText(result.get("high") + "-" + result.get("low"));
                 EditText inputToken = dialogView.findViewById(R.id.input_token);
-                inputToken.setText(result.get("passToken_env3"));
-                EditText inputLanguage = dialogView.findViewById(R.id.input_language);
-                inputLanguage.setText(result.get("language_code_env3"));
+                inputToken.setText(result.get("Token"));
+                EditText inputscId = dialogView.findViewById(R.id.input_scid);
+                inputscId.setText(result.get("SCID"));
+                EditText inputscToken = dialogView.findViewById(R.id.input_sctoken);
+                inputscToken.setText(result.get("SCToken"));
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setView(dialogView)
@@ -164,12 +163,13 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
                                 String archiveName = inputArchiveName.getText().toString().trim();
                                 String id = inputId.getText().toString().trim();
                                 String token = inputToken.getText().toString().trim();
-                                String language = inputLanguage.getText().toString().trim();
+                                String scid = inputscId.getText().toString().trim();
+                                String sctoken = inputscToken.getText().toString().trim();
                                 if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                                     ActivityCompat.requestPermissions((Activity) view.getContext(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                                 } else {
-                                    ArchiveUtils.createArchiveFile(view.getContext(), archiveName, id, token, language, null, folderName);
-                                    navController.navigate(R.id.nav_home);
+                                    ArchiveUtils.createSCArchiveFile(view.getContext(), archiveName, id, token, scid, sctoken, null, folderName);
+                                    navController.navigate(R.id.nav_gallery);
                                 }
                             }
                         })
@@ -209,28 +209,19 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
 
     private void deleteFolder(String folderName, View view) {
         // Define the path to the profiles/files directory
-        String directoryPath = "/data/data/com.buta.hdagent/files/profiles/" + folderName;
+        String directoryPath = "/data/data/com.buta.hdagent/files/sc_profiles/" + folderName;
         File directory = new File(directoryPath);
         Log.d("FolderAdapter", "Attempting to delete folder at path: " + directory.getAbsolutePath());
         if (directory.exists() && directory.isDirectory()) {
             // Delete the folder and its contents
             deleteRecursive(directory);
             int position = folderNames.indexOf(folderName);
-            navController.navigate(R.id.nav_home);
-            Toast.makeText(view.getContext(), "Folder \"" + folderName + "\" deleted.", Toast.LENGTH_SHORT).show();
+            navController.navigate(R.id.nav_gallery);
         } else {
             Toast.makeText(view.getContext(), "Folder \"" + folderName + "\" not found.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void deleteRecursive(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory()) {
-            for (File child : fileOrDirectory.listFiles()) {
-                deleteRecursive(child);
-            }
-        }
-        fileOrDirectory.delete();
-    }
     public static boolean checkDirectoryExists(String path) {
         String command = "[ -d \"" + path + "\" ] && echo \"exists\"";
         return executeSuCommand(command).contains("exists");
@@ -239,7 +230,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
 
     public static boolean deleteDirectoryContents(String path) {
         String command = "rm -rf " + path + "/*";
-        return executeSuCommand(command).isEmpty(); // rm 不会有输出表示成功
+        return executeSuCommand(command).isEmpty();
     }
 
     private static String executeSuCommand(String command) {
@@ -259,6 +250,14 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
             e.printStackTrace();
         }
         return output.toString();
+    }
+    private void deleteRecursive(File fileOrDirectory) {
+        if (fileOrDirectory.isDirectory()) {
+            for (File child : fileOrDirectory.listFiles()) {
+                deleteRecursive(child);
+            }
+        }
+        fileOrDirectory.delete();
     }
     public static class FolderViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
