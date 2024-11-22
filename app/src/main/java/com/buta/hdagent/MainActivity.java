@@ -267,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
                     LayoutInflater inflater = LayoutInflater.from(view.getContext());
                     View dialogView = inflater.inflate(R.layout.dialog_input_sc, null);
                     Map<String, String> result = XmlAttributeReader.queryHDAttributes();
-                    System.out.println(result);
                     JSONObject jsonObject = null;
                     try {
                         if (result.get("SCID_PROD_ACCOUNTS") != null && result.get("passToken_env3") != null){
@@ -342,6 +341,10 @@ public class MainActivity extends AppCompatActivity {
                 View dialogView = inflater.inflate(R.layout.dialog_input, null);
                 Map<String, String> result = XmlAttributeReader.queryHDAttributes();
                 EditText inputArchiveName = dialogView.findViewById(R.id.input_archive_name);
+                String name = XmlAttributeReader.queryName();
+                if (name != null) {
+                    inputArchiveName.setText(name);
+                }
                 if (result.get("passToken_env3") == null){
                     Toast.makeText(view.getContext(), getString(R.string.Filenotfound), Toast.LENGTH_SHORT).show();
                     return;

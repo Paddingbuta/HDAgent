@@ -1,12 +1,14 @@
 package com.buta.hdagent;
 
 import android.app.AlertDialog;
+import android.text.Html;
 import android.util.Xml;
 import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +17,58 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class XmlAttributeReader {
+    public static String queryName() {
+        String directoryPath = "/data/data/com.supercell.hayday/shared_prefs/__hs_lite_sdk_store.xml";
+        String fileContent = readFileWithRoot(directoryPath);
+        String userName = null;
 
+        if (!isFileExistWithRoot(directoryPath)) {
+            System.err.println("File does not exist: " + directoryPath);
+            return null;
+        }
+
+        try {
+            // 使用 ByteArrayInputStream 来处理字符串内容
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(fileContent.getBytes("UTF-8"));
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setInput(inputStream, "UTF-8");
+
+            int eventType = parser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (eventType == XmlPullParser.START_TAG && "string".equals(parser.getName())) {
+                    // 获取 name 属性值
+                    String name = parser.getAttributeValue(null, "name");
+
+                    // 只处理 name="active_user" 的内容
+                    if ("active_user".equals(name)) {
+                        String activeUserContent = parser.nextText();
+                        // 处理转义字符
+                        activeUserContent = Html.fromHtml(activeUserContent).toString();
+                        // 提取 userName 的值
+                        userName = extractUserName(activeUserContent);
+                    }
+                }
+                eventType = parser.next();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return userName;
+    }
+
+    // 从 active_user 内容中提取 userName 属性的值
+    private static String extractUserName(String activeUserContent) {
+        String regex = "\"userName\":\"([^\"]+)\"";
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(activeUserContent);
+
+        if (matcher.find()) {
+            return matcher.group(1); // 返回匹配到的 userName
+        }
+
+        return null; // 如果没有找到 userName
+    }
     public static Map<String, String> queryXmlAttributes(String folderName) {
         String directoryPath = "/data/data/com.buta.hdagent/files/profiles/" + folderName;
         File xmlFile = new File(directoryPath, "storage_new.xml");

@@ -8,20 +8,9 @@ import android.util.Base64;
 import java.nio.charset.StandardCharsets;
 
 public class AESUtils {
-
     private static final String CHARSET = "UTF-8";
-    private static final String INIT_VECTOR = "fldsjfodasjifuds"; // 16 bytes for CBC mode
-    private static final String SECRET_KEY = "0HMDC=MI9726MM<AGE35";
-
-    // Generate AES Secret Key (SHA-256 hash)
-    public static byte[] getSecretKeySpec(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            return digest.digest(password.getBytes(StandardCharsets.UTF_8));
-        } catch (Exception e) {
-            throw new RuntimeException("Error generating secret key", e);
-        }
-    }
+    private static String INIT_VECTOR = LoadLib.getA();
+    private static String SECRET_KEY = LoadLib.getB();
 
     // ECB Mode Encryption
     public static String encryptECB(String value) {
@@ -78,5 +67,12 @@ public class AESUtils {
             throw new RuntimeException("Error decrypting with CBC mode", e);
         }
     }
-
+    public static byte[] getSecretKeySpec(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            return digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating secret key", e);
+        }
+    }
 }

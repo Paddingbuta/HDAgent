@@ -42,17 +42,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
         this.folderNames = folderNames;
 
     }
-    public void addFolder(String newFolderName) {
-        // Check if the new folder name already exists in the list
-        if (!folderNames.contains(newFolderName)) {
-            folderNames.add(newFolderName);  // Add new item to the list
-            Collections.sort(folderNames);   // Sort the list after adding the new folder name
-            notifyItemInserted(folderNames.size() - 1);  // Notify adapter to refresh
-        } else {
-            // If the folder name already exists, skip adding
-            Log.d("FolderAdapter", "File already exists: " + newFolderName);
-        }
-    }
     @Override
     public FolderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the custom layout for each item

@@ -57,26 +57,40 @@ public class ImportDialogHelper {
     // Method to parse and validate each line
     private static List<DataEntry> parseAndValidateInput(String inputText, View view, FolderAdapter folderAdapter) {
         List<DataEntry> dataEntries = new ArrayList<>();
-        // Updated regex to match the format high-low followed by a token
         Pattern pattern = Pattern.compile("^(\\d+)-(\\d+)\\s+([\\w]+)$");
 
-        String[] lines = inputText.split("\\n");
-        int idCounter = 1;  // Starting identifier
+        Pattern numberedPattern = Pattern.compile("^(\\d+)\\s+(\\d+)-(\\d+)\\s+([\\w]+)$");
 
+        String[] lines = inputText.split("\\n");
+        int idCounter = 1;
         for (String line : lines) {
-            Matcher matcher = pattern.matcher(line.trim());
+            line = line.trim();
+            Matcher matcher = pattern.matcher(line);
+
             if (matcher.matches()) {
                 String high = matcher.group(1);
                 String low = matcher.group(2);
                 String id = high + "-" + low;
                 String token = matcher.group(3);
                 ArchiveUtils.createArchiveFile(view.getContext(), Integer.toString(idCounter), id, token, "EN", folderAdapter, null);
-                // Create a new DataEntry with sequential id, high, low, and token
-                dataEntries.add(new DataEntry(String.valueOf(idCounter), high, low, token));
-                idCounter++;  // Increment the identifier for the next entry
+                dataEntries.add(new DataEntry(Integer.toString(idCounter), high, low, token));
+
             } else {
-                return null;  // Return null if any line does not match the expected format
+                Matcher numberedMatcher = numberedPattern.matcher(line);
+                if (numberedMatcher.matches()) {
+                    String customId = numberedMatcher.group(1);
+                    String high = numberedMatcher.group(2);
+                    String low = numberedMatcher.group(3);
+                    String token = numberedMatcher.group(4);
+                    String id = high + "-" + low;
+
+                    ArchiveUtils.createArchiveFile(view.getContext(), customId, id, token, "EN", folderAdapter, null);
+                    dataEntries.add(new DataEntry(customId, high, low, token));
+                } else {
+                    return null;
+                }
             }
+            idCounter = idCounter + 1;
         }
         return dataEntries;
     }

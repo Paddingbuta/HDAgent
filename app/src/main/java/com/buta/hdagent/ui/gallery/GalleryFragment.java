@@ -22,6 +22,7 @@ import com.buta.hdagent.ui.gallery.FolderAdapter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class GalleryFragment extends Fragment {
@@ -62,12 +63,24 @@ public class GalleryFragment extends Fragment {
             // Get all folder names
             String[] folderList = profilesDir.list();
             if (folderList != null) {
-                Arrays.sort(folderList);
+                customSort(folderList);
                 folderNames.addAll(Arrays.asList(folderList));
             }
         }
     }
+    public static void customSort(String[] folderNames) {
+        Arrays.sort(folderNames, (a, b) -> {
+            String prefixA = a.replaceAll("\\d+$", "");
+            String prefixB = b.replaceAll("\\d+$", "");
 
+            if (prefixA.equals(prefixB)) {
+                String numA = a.replaceAll("\\D+", "");
+                String numB = b.replaceAll("\\D+", "");
+                return Integer.compare(Integer.parseInt(numA), Integer.parseInt(numB));
+            }
+            return a.compareTo(b);
+        });
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
